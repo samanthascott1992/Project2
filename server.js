@@ -19,7 +19,7 @@ require("./routes/api-routes.js")(app);
 // Add more here if we create more route files
 
 db.sequelize.sync().then(function() {
-  app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
-  });
+    app.listen(PORT, function() {
+        console.log("App listening on PORT " + PORT);
+    });
 });

@@ -1,4 +1,4 @@
-var db = require("../models")
+var db = require("../models");
 
 // get route for posts page
 // get route for login page
@@ -9,12 +9,12 @@ var db = require("../models")
 module.exports = function(app){
 
     app.get("/posts", (req, res)=>{
-        db.Posts.findAll()
-    }).then((err, res)=>{
-        if (err) throw err;
-        res.json(res)
-    })
+        db.Posts.findAll().then(data=>{
+            res.json(data);
+        })
+    }).then(data=>{
+        res.json(data)
+    }
 
 
-    
-}
+});
