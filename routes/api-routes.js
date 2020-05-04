@@ -4,6 +4,10 @@ var db = require("../models");
 
 
 module.exports = function(app){
+
+    app.get("/splash", function(req, res) {
+        res.redirect("/");
+    });
     // get route for posts page
     app.get("/posts", (req, res)=>{
         db.Posts.findAll();
