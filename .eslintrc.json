@@ -4,6 +4,9 @@
       "commonjs": true,
       "node": true
   },
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
   "rules": {
       "no-duplicate-case":"error",
       "no-empty":"error",
@@ -27,11 +30,11 @@
       "brace-style": "error",
       "indent": [
           "error",
-          2
+          4
       ],
       "quotes": [
           "error",
-          "single"
+          "double"
       ],
       "semi": [
           "error",
