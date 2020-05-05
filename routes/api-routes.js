@@ -2,24 +2,24 @@ var db = require("../models");
 
 module.exports = function(app){
 
-    app.get("/splash", function(req, res) {
+    app.get("/api/splash", function(req, res) {
         res.redirect("/");
     });
 
     // get route for posts page
-    app.get("/posts", function(req, res){
+    app.get("/api/posts", function(req, res){
         db.Post.findAll().then(function(response){
             res.json(response);
         });
     });
     // get route for login page
-    app.get("/login", (req, res)=>{
+    app.get("/api/login", (req, res)=>{
         db.Post.findAll().then((data)=>{
             res.json(data);
         });
     });
     // sign up route
-    app.post("/signup", function(req, res) {
+    app.post("/api/signup", function(req, res) {
         db.User.create({
             email: req.body.email,
             password: req.body.password
@@ -32,7 +32,7 @@ module.exports = function(app){
 
     // log out route
 
-    app.get("/logout", function(req, res) {
+    app.get("/api/logout", function(req, res) {
         req.logout();
         res.redirect("/");
     });
