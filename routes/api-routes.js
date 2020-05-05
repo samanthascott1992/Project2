@@ -1,8 +1,5 @@
 var db = require("../models");
 
-
-
-
 module.exports = function(app){
 
     app.get("/splash", function(req, res) {
@@ -10,18 +7,17 @@ module.exports = function(app){
     });
 
     // get route for posts page
-    app.get("/posts", (req, res)=>{
-        db.Posts.findAll().then((data)=>{
-        res.json(data);
+    app.get("/posts", function(req, res){
+        db.Post.findAll().then(function(response){
+            res.json(response);
         });
     });
     // get route for login page
     app.get("/login", (req, res)=>{
-        db.Posts.findAll().then(data=>{
-        res.json(data);
+        db.Post.findAll().then((data)=>{
+            res.json(data);
         });
     });
-    
     // sign up route
     app.post("/signup", function(req, res) {
         db.User.create({
