@@ -9,6 +9,7 @@ require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT || 8080;
+const keys = require("./keys.js");
 
 const s3 = new AWS.S3({
     accessKeyId: keys.s3key,
