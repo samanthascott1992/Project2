@@ -1,4 +1,5 @@
 const bcrypt = require("bcryptjs");
+
 module.exports = function(sequelize, DataTypes) {
     const User = sequelize.define("User", {
         name: DataTypes.STRING,
@@ -12,7 +13,11 @@ module.exports = function(sequelize, DataTypes) {
         },
         hashedPassword: {
             type: DataTypes.STRING(64),
-            is: /^[0-9a-zA-Z]{64}$/i
+            is: /^[0-9a-zA-Z]{64}$/i,
+            len: [8]
+        },
+        address: {
+            type: DataTypes.STRING,
         }
     });
 
