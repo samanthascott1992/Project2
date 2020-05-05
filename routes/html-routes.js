@@ -3,36 +3,61 @@ const path = require("path");
 // will need  route for homepage, all posts page, sign up page, login page, create posts page
 
 // Requiring our custom middleware for checking if a user is logged in
-var isAuthenticated = require("../config/middleware/isAuthenticated");
+var isAuthenticated = require("../config/middleware/isAuthenticated.js");
 
 module.exports = function(app) {
 
     app.get("/", function(req, res) {
-    // If the user already has an account send them to the viewPosts page
-        if (req.user) {
-            res.redirect("/viewPosts");
+        if (res.user) {
+            // If the user is already logged in send them to their Profile Page
+            res.redirect("/profile");
         }
-        res.sendFile(path.join(__dirname, "../public/viewPosts.html"));
+    // Otherwise, just show the Home Page
+    });
+
+    app.get("/viewPost", function(req, res){
+        //Show viewPost Page
+        res.sendFile(path.join(__dirname, "../public/viewPost.html"));
     });
 
     app.get("/login", function(req, res) {
-    // If the user already has an account send them to the members page
-        if (req.user) {
-            res.redirect("/create");
+        if (res.user) {
+            // If the user is already logged in send them to the members page
+            res.redirect("/createPost");
         }
-        res.sendFile(path.join(__dirname, "../public/login.html"));
+        //Otherwise, allow them to log in
+        res.sendFile(path.join(__dirname, "../public/loginSplash.html"));
     });
 
-    // Here we've add our isAuthenticated middleware to this route.
-    // If a user who is not logged in tries to access this route they will be redirected to the signup page
-    app.get("/create", isAuthenticated, function(req, res) {
-        res.sendFile(path.join(__dirname, "../public/signup.html"));
+
+    // Here we've add our isAuthenticated middleware to these routes.
+    app.get("/createPost", isAuthenticated, function(req, res) {
+        if(isAuthenticated && res.user){
+            //If user is logged in, allow them to create a post
+            res.sendFile(path.join(__dirname, "../public/createPost.html"));
+        } else{
+            //Otherwise, redirect to signup
+            res.redirect("/signup");
+        }
+
     });
 
     app.get("/signup", isAuthenticated, function(req, res) {
+        if(isAuthenticated && res.user){
+            //If user is logged in, redirect to Profile Page
+            res.redirect("/profile");
+        }
+        //Otherwise, allow them to sign up
         res.sendFile(path.join(__dirname, "../public/signup.html"));
     });
-    app.get("/posts", isAuthenticated, function(req, res) {
-        res.sendFile(path.join(__dirname, "../public/viewPosts.html"));
+
+    app.get("/profile", isAuthenticated, function(req,res){
+        if(isAuthenticated && res.user){
+            //If user is logged in, send them to their Profile Page
+            res.sendFile(path.join(__dirname, "../public/profile.html"));
+        } else {
+            //Otherwise, redirect to Signup Page
+            res.redirect("/signup");
+        }
     });
 };
