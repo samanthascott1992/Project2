@@ -2,16 +2,25 @@
 // Server.js - This file is the initial starting point for the Node/Express server.
 //
 // ******************************************************************************
-var express = require("express");
+const express = require("express");
+const fileUpload = require("express-fileupload");
+const AWS = require("aws-sdk");
+require("dotenv").config();
 
-var app = express();
-var PORT = process.env.PORT || 8080;
+const app = express();
+const PORT = process.env.PORT || 8080;
+const keys = require("./keys.js");
 
-var db = require("./models");
+const s3 = new AWS.S3({
+    accessKeyId: keys.s3key,
+    secretAccessKey: keys.s3secret
+});
+
+const db = require("./models");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+app.use(fileUpload());
 app.use(express.static("public"));
 
 require("./routes/html-routes.js")(app);
