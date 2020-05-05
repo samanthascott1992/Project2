@@ -18,6 +18,7 @@ module.exports = function(app){
             res.json(data);
         });
     });
+
     // sign up route
     app.post("/api/signup", function(req, res) {
         db.User.create({
@@ -30,6 +31,8 @@ module.exports = function(app){
             res.status(401).json(err);
         });
     });
+
+    // NEED .POST ROUTE FOR CREATING POSTS
 
     // log out route
 
