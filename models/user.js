@@ -11,10 +11,11 @@ module.exports = function(sequelize, DataTypes) {
                 isEmail: true
             }
         },
-        hashedPassword: {
+        password: {
             type: DataTypes.STRING(64),
             is: /^[0-9a-zA-Z]{64}$/i,
-            len: [8]
+            len: [8],
+            allowNull: false
         },
         address: {
             type: DataTypes.STRING,

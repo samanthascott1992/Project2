@@ -148,3 +148,11 @@ h3 {
     margin-left: 10px;
     font-size: 30px;
 }
+
+#map{
+    float: left;
+}
+#forecast {
+    float: left;
+}
+
