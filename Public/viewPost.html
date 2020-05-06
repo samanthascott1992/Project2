@@ -6,15 +6,20 @@
 
     <title>SELLYOSTUFF</title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   
 
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
       <style>
         /* Always set the map height explicitly to define the size of the div
          * element that contains the map. */
+         #forecast {
+           height: 50%;
+         }
         #map {
-          height: 100%;
+          height: 50%;
         }
         /* Optional: Makes the sample page fill the window. */
         html, body {
@@ -72,8 +77,11 @@
             <p1>Don't have an account yet!</p1> <a href="createAccount.html" id="newAccount"><span style="color: red">Start Here!</span></a>
         </div>
     </div>
-      
-  <div id="map"></div>
+
+  <div id="map"></div> 
+  <div class="row"> 
+ <div id="forecast" class="mt-3"></div>  
+ </div> 
     <script>
         document.getElementById("loginButton").addEventListener("click", function() {
             document.querySelector(".bg-modal").style.display = "flex";
@@ -83,19 +91,102 @@
             document.querySelector(".bg-modal").style.display = "none";
         });
 
-    var map;
-    function initMap() {
-        map = new google.maps.Map(document.getElementById("map"), {
-            center: {lat: -34.397, lng: 150.644},
-            zoom: 8
-        });
-    }
+//     var map;
+//     function initMap() {
+//         map = new google.maps.Map(document.getElementById("map"), {
+//             center: {lat: 39.7392, lng: -104.9903},
+//             zoom: 8
+//         });
+//     }
 
-</script>   
- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHEIDB-6P3pJ9yo71rY726T8kErrUENH0&callback=initMap"
+// </script>   
+
+ <script>
+  // Note: This example requires that you consent to location sharing when
+  // prompted by your browser. If you see the error "The Geolocation service
+  // failed.", it means you probably did not give permission for the browser to
+  // locate you.
+  var map, infoWindow;
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: 39.7392, lng: -104.9903},
+      zoom: 12
+    });
+    infoWindow = new google.maps.InfoWindow;
+
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+
+        getForecast(pos);
+        infoWindow.setPosition(pos);
+        infoWindow.setContent('Location found.');
+        infoWindow.open(map);
+        map.setCenter(pos);
+      }, function() {
+        handleLocationError(true, infoWindow, map.getCenter());
+      });
+    } else {
+      // Browser doesn't support Geolocation
+      handleLocationError(false, infoWindow, map.getCenter());
+    }
+  }
+
+  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(browserHasGeolocation ?
+                          'Error: The Geolocation service failed.' :
+                          'Error: Your browser doesn\'t support geolocation.');
+    infoWindow.open(map);
+  }
+
+  function getForecast(pos) {
+      var yourApiKey = "ef8ea8087cbda61b4ebad7da96701611"
+      var queryUrl = "https://api.openweathermap.org/data/2.5/forecast?lat="+ pos.lat + "&lon=" + pos.lng + "&appid="+yourApiKey+"&units=imperial";
+      $.ajax({
+          type: "GET",
+          url: queryUrl,
+          dataType: "JSON", success: function (response) {
+            $("#forecast").html("<h4 class=\"mt-3\">5-Day Forecast for Your Area: </h4>").append("<div class=\"row\">")
+            for(var i=0; i< response.list.length; i++) {
+                if (response.list[i].dt_txt.indexOf("12:00:00") !== -1)
+                {
+                    console.log(response);
+                    var col = $("<div>").addClass("col-md-2")
+                    var card = $("<div>").addClass("card bg-primary text-white")
+                    var body = $("<div>").addClass("card-body p-2")
+                    var date = $("<p>").addClass("date").text(response.list[i].dt_txt.substr(0,10))
+                    var icon = $("<img>").addClass("card-text").attr("src", "http://openweathermap.org/img/w/" + response.list[i].weather[0].icon + ".png" )
+                    var p1= $("<p>").addClass("card-text").text("Temperature " + response.list[i].main.temp_max)
+                    var p2= $("<p>").addClass("card-text").text("Humidity " + response.list[i].main.humidity)
+                    body.append(icon)
+                    col.append(card.append(body.append(date, icon, p1, p2)))
+                    $("#forecast .row").append(col)
+                }
+            }
+          }
+      });
+  }
+</script>
+
+
+
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWX6X7K5-Z6nN9Bn8YfIV5KtnFkosg6eE&callback=initMap"
     async defer>
+
   </script>
 <!-- PROTECT THE API KEY -->
+
+  
+  
+
+
+ 
+
 
 </body>
 </html>
