@@ -1,4 +1,6 @@
 var db = require("../models");
+const keys = require("../keys.js")
+const AWS = require("aws-sdk");
 
 module.exports = function(app){
 
@@ -32,13 +34,25 @@ module.exports = function(app){
         });
     });
 
-    // NEED .POST ROUTE FOR CREATING POSTS
+    // create post route
+    app.post("/api/post", function(req, res){
+        db.Post.create(req.body).then(data=>{
+            res.status(200)
+        }).catch(err=>{
+            res.status(415).json(err)
+        })
+    })
 
     // log out route
 
     app.get("/api/logout", function(req, res) {
         req.logout();
         res.redirect("/");
+    });
+
+    const s3 = new AWS.S3({
+        accessKeyId: keys.s3key,
+        secretAccessKey: keys.s3secret
     });
 
     app.post("/upload", async (req, res) => {
@@ -55,7 +69,7 @@ module.exports = function(app){
         };
     
         s3.upload(params, (err, response) => {
-            if (err) throw err;
+            if (err) {throw err};
         
             console.log(`File uploaded successfully at ${response.Location}`);
             // terminating the req/res cycle by sending a JSON object with the uploaded

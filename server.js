@@ -4,17 +4,13 @@
 // ******************************************************************************
 const express = require("express");
 const fileUpload = require("express-fileupload");
-const AWS = require("aws-sdk");
+
 require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT || 8080;
-const keys = require("./keys.js");
 
-const s3 = new AWS.S3({
-    accessKeyId: keys.s3key,
-    secretAccessKey: keys.s3secret
-});
+
 
 const db = require("./models");
 
