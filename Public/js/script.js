@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+var images = [];
+
+=======
+>>>>>>> master
 
 $("#submitUpload").on("click", function (event) {
     event.preventDefault();
@@ -26,5 +31,48 @@ $("#submitUpload").on("click", function (event) {
         error: function(err) {
             console.log(err);
         }
+    }).then(data=>{
+        images.push(data.url);
+    });
+});
+
+$("#createPost").on("click", function(event){
+    event.preventDefault();
+
+    const title = $("#title").val().trim();
+    const body = $("#body").val().trim();
+    const zip = $("#zip").val().trim();
+
+    const post = {
+        title: title,
+        body: body,
+        zipCode: zip,
+        images: images.join(", ")
+    };
+
+    $.get("/api/user_data").then(user=>{
+        post.UserId = user.id;
+        $.ajax("/api/post", {
+            method: "POST",
+            data: post
+        }).then(function(){
+            console.log("Successfully created post");
+            res.redirect("/viewPost");
+        });
+    });
+
+});
+
+$("#submitButton").on("click", event=>{
+    event.preventDefault();
+    alert("test")
+    $.ajax("/api/login", {
+        type: "POST",
+        data: {
+            email: $("#loginEmail").val().trim(),
+            password: $("#loginPassword").val().trim()
+        }
+    }).then(()=>{
+        location.href= "/viewPost";
     });
 });

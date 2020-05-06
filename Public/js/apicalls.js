@@ -1,50 +1,55 @@
-$(document).ready(function(){
 
-    var userName = $("#inputName").val().trim()(/\s+/g);
-    var email = $("#inputEmail").val().trim();
-    var password = $("#inputPassword").val().trim();
-    var address = `${$("#inputAddress").val().trim} ${$("#inputCity").val().trim()}, ${$("#inputState")} ${$("#inputZip")}`;
 
-    function handleLoginErr(err) {
-        $("#alert .msg").text(err.responseJSON);
-        $("#alert").fadeIn(500);
-    }
 
-    function signUpUser(userName, email, password, address) {
-        $.post("/api/signup", {
-            name: userName,
-            email: email,
-            password: password,
-            address: address
+function handleLoginErr(err) {
+    console.log(err);
+    $("#alert .msg").text(err.responseJSON);
+    $("#alert").fadeIn(500);
+}
+
+function signUpUser(name, email, password, address) {
+
+    // const userName = $("#inputName2").val().trim();
+    // const email = $("#inputEmail2").val().trim();
+    // const password = $("#inputPassword").val().trim();
+    // const address = `${$("#inputAddress").val().trim} ${$("#inputCity").val().trim()}, ${$("#inputState")} ${$("#inputZip")}`;
+
+    $.post("/api/signup", {
+        name: name,
+        email: email,
+        password: password,
+        address: address
+    })
+        .then(function(data) {
+            window.location.replace("/login");
         })
-            .then(function(data) {
-                window.location.replace("/login");
-            })
-            .catch(handleLoginErr);
+        .catch(handleLoginErr);
+}
+
+$("#regButton").on("click", event=>{
+    event.preventDefault();
+    var userAddress = `${$("#inputAddress").val().trim()} ${$("#inputCity").val().trim()}, ${$("#inputState").val().toString()} ${parseInt($("#inputZip").val())}`;
+
+    const userData = {
+        name: $("#inputName2").val().trim(),
+        email: $("#inputEmail2").val().trim(),
+        password: $("#inputPassword").val().trim(),
+        address: userAddress
+    };
+    console.log(userData);
+
+    if (!userData.name || !userData.email || !userData.password || !userData.address) {
+        return;
     }
 
-    $("#create-user").on("click", event=>{
-        event.preventDefault();
-
-        const userData = {
-            name: userName,
-            email: email,
-            hashedPassword: password,
-            address: address
-        };
-
-        if (!userData.name || !userData.email || !userData.password || !userData.address) {
-            return;
-        }
-
-        signUpUser(userData.name, userData.email, userData.password);
-        $("#inputName").val("");
-        $("#inputEmail").val("");
-        $("#inputPassword").val("");
-        $("#inputAddress").val("");
-        $("#inputCity").val("");
-        $("#inputState").val("");
-        $("#inputZip").val("");
-    });
-
+    signUpUser(userData.name, userData.email, userData.password, userData.address);
+    $("#inputName2").val("");
+    $("#inputEmail2").val("");
+    $("#inputPassword").val("");
+    $("#inputAddress").val("");
+    $("#inputCity").val("");
+    $("#inputState").val("");
+    $("#inputZip").val("");
 });
+
+
