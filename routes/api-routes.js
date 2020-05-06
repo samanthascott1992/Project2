@@ -1,6 +1,7 @@
 var db = require("../models");
 const keys = require("../keys.js")
 const AWS = require("aws-sdk");
+const passport = require ("../config/passport")
 
 module.exports = function(app){
 
@@ -15,20 +16,16 @@ module.exports = function(app){
         });
     });
     // get route for login page
-    app.get("/api/login", (req, res)=>{
-        db.Post.findAll().then((data)=>{
-            res.json(data);
-        });
+    app.post("/api/login", passport.authenticate("local"), function(req, res) {
+        res.json(req.user);
+        
     });
 
     // sign up route
     app.post("/api/signup", function(req, res) {
-        db.User.create({
-            name: req.body.name,
-            email: req.body.email,
-            hashedPassword: req.body.hashedPassword
-        }).then(function() {
-            res.redirect(307, "/login");
+        console.log(req.body)
+        db.User.create(req.body).then(function() {
+            res.redirect(307, "/api/login");
         }).catch(function(err) {
             res.status(401).json(err);
         });
@@ -36,12 +33,28 @@ module.exports = function(app){
 
     // create post route
     app.post("/api/post", function(req, res){
+        req.body.zipCode = parseInt(req.body.zipCode)
+        console.log(req.body)
         db.Post.create(req.body).then(data=>{
             res.status(200)
         }).catch(err=>{
             res.status(415).json(err)
         })
-    })
+    });
+
+    app.get("/api/user_data", function(req, res) {
+        if (!req.user) {
+          // The user is not logged in, send back an empty object
+          res.json({});
+        } else {
+          // Otherwise send back the user's email and id
+          // Sending back a password, even a hashed password, isn't a good idea
+          res.json({
+            email: req.user.email,
+            id: req.user.id
+          });
+        }
+      });
 
     // log out route
 
