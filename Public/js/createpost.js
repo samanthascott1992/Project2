@@ -17,9 +17,10 @@ $("#createPost").on("click", function(event){
         $.ajax("/api/post", {
             method: "POST",
             data: post
-        }).then(function(){
+        }).then(function(response){
             console.log("Successfully created post");
             res.redirect("/viewPost");
+            console.log(response)
         });
     });
 
