@@ -32,6 +32,24 @@
           </div>
         </div>
       </nav>
+      <div>
+        <input id = "title" placeholder= "title">
+        <input id = "body" placeholder= "body">
+        <input id = "zip" placeholder= "zip code">
+        <button id = "createPost">Create Post</button>
+      </div>
+      <form id="uploadForm" enctype="multipart/form-data">
+        <label for="description">File Description:</label>
+        <input type="text" name="description" placeholder="File Description" id="description" />
+
+        <!-- the name attribute here ('upload') must match the key following 'req.files' in your back-end route! -->
+        <label for="upload">Upload File:</label>
+        <input type="file" name="upload" id="upload" />
+
+        <input type="submit" value="Upload File" id="submitUpload" />
+    </form>
+
+    
       <div class="bg-modal">
           <div class="modal-content">
             <div class="close">+</div>
@@ -57,7 +75,10 @@
         </div>
     </div>
       
-
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="./js/script.js"></script>
+    <script src="./js/createpost.js"></script>
     <script>
         document.getElementById("loginButton").addEventListener("click", function() {
             document.querySelector(".bg-modal").style.display = "flex";
