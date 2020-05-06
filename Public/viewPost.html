@@ -19,9 +19,10 @@
 
          #forecast {
            height: 50%;
+           padding-left: 1rem;
          }
         #map {
-          height: 50%;
+          height: 40%;
           width: 50%;
         }
         /* Optional: Makes the sample page fill the window. */
@@ -81,15 +82,15 @@
             <p1>Don't have an account yet!</p1> <a href="createAccount.html" id="newAccount"><span style="color: red">Start Here!</span></a>
         </div>
     </div>
-<container class ="hello">
+
 
   <div id="map"> </div>
   <div class="row"> 
  <div id="forecast" class="mt-3"></div>  
  </div> 
 
-</container>
     <script>
+      
         document.getElementById("loginButton").addEventListener("click", function() {
             document.querySelector(".bg-modal").style.display = "flex";
         });
@@ -98,21 +99,10 @@
             document.querySelector(".bg-modal").style.display = "none";
         });
 
-//     var map;
-//     function initMap() {
-//         map = new google.maps.Map(document.getElementById("map"), {
-//             center: {lat: 39.7392, lng: -104.9903},
-//             zoom: 8
-//         });
-//     }
-
-// </script>   
+</script>   
 
  <script>
-  // Note: This example requires that you consent to location sharing when
-  // prompted by your browser. If you see the error "The Geolocation service
-  // failed.", it means you probably did not give permission for the browser to
-  // locate you.
+
 
   var map, infoWindow;
   function initMap() {
@@ -122,7 +112,6 @@
     });
     infoWindow = new google.maps.InfoWindow;
 
-    // Try HTML5 geolocation.
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
         var pos = {
@@ -138,7 +127,8 @@
       }, function() {
         handleLocationError(true, infoWindow, map.getCenter());
       });
-      
+
+
     var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     var labelIndex = 0;    
     google.maps.event.addListener(map, 'click', function(event) {
@@ -170,6 +160,22 @@
 
     infoWindow.open(map);
   }
+// const NodeGeocoder = require('node-geocoder');
+  //   const options = {
+  //     provider: 'google',
+  //     fetch: customFetchImplementation,
+  //     apiKey: "AIzaSyDMkcKxSpjxrEiwZy-HsfrsenUVvF6jfiM",
+  //     formatter: null // 'gpx', 'string', ...
+  //   };
+
+  //   const geocoder = NodeGeocoder(options);
+  //   const results = await geocoder.geocode(
+  // // LINK TO THE DATABASE ADDRESSES!!!
+  //     "14607 E Temple Place Aurora",
+  //    );
+
+
+
 
 
 
