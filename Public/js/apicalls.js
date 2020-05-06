@@ -52,4 +52,13 @@ $("#regButton").on("click", event=>{
     $("#inputZip").val("");
 });
 
+$("#viewPostButton").on("click", (event)=>{
+    event.preventDefault();
+    $.ajax("/viewPost",{
+        method: "GET"
+    }).then(()=>{
+        window.location.replace("/viewPost");
+    });
+});
+
 

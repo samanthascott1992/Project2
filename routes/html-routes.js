@@ -1,5 +1,6 @@
 const path = require("path");
 
+
 // will need  route for homepage, all posts page, sign up page, login page, create posts page
 
 // Requiring our custom middleware for checking if a user is logged in
@@ -17,7 +18,8 @@ module.exports = function(app) {
 
     app.get("/viewPost", function(req, res){
         //Show viewPost Page
-        res.sendFile(path.join(__dirname, "../public/viewPost.html"));
+        // res.sendFile(path.join(__dirname, "../views/viewPost.handlebars"));
+        res.render("viewPost");
     });
 
     app.get("/login", function(req, res) {
