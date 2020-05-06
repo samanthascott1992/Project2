@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 var images = [];
 
+=======
+>>>>>>> master
 
 $("#submitUpload").on("click", function (event) {
     event.preventDefault();
