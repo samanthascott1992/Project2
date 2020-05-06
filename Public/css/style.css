@@ -54,6 +54,7 @@ body {
     text-align: center;
     border: 2px solid black;
     position: relative;
+    margin-top: 10px;
 }
 
 #submitButton {
@@ -65,7 +66,7 @@ body {
 
 }
 #newAccount {
-    margin: 5px;
+    margin: 10px;
 
 }
 
@@ -96,4 +97,37 @@ body {
     font-size: 42px;
     transform: rotate(45deg);
     cursor: pointer;
+}
+
+.register {
+    color:black;
+    text-align: center;
+    font-size: 22px;
+    right: 550px;
+    top: 50px;
+    position: relative;
+}
+
+#regButton {
+    background-color: blue;
+    border: 2px solid black;
+    color: white;
+    padding: 8px;
+    border-radius: 20px;
+}
+
+#message {
+    border: 2px solid black;
+    color: black;
+    width: 300px;
+    position: relative;
+    left: 250px;
+    margin-top: 20px;
+}
+
+
+#message>p {
+    font-size: 15px;
+    color: red;
+ 
 }
