@@ -14,6 +14,7 @@ module.exports = function(app){
             res.json(response);
         });
     });
+    
     // get route for login page
     app.get("/api/login", (req, res)=>{
         db.Post.findAll().then((data)=>{
@@ -36,10 +37,12 @@ module.exports = function(app){
 
     // create post route
     app.post("/api/post", function(req, res){
+        console.log("something")
         db.Post.create(req.body).then(data=>{
             res.status(200)
         }).catch(err=>{
-            res.status(415).json(err)
+            console.log(err)
+            res.status(401).json(err)
         })
     })
 
@@ -49,6 +52,20 @@ module.exports = function(app){
         req.logout();
         res.redirect("/");
     });
+
+    app.get("/api/user_data", function(req, res) {
+        if (!req.user) {
+          // The user is not logged in, send back an empty object
+          res.json({});
+        } else {
+          // Otherwise send back the user's email and id
+          // Sending back a password, even a hashed password, isn't a good idea
+          res.json({
+            email: req.user.email,
+            id: req.user.id
+          });
+        }
+      });
 
     const s3 = new AWS.S3({
         accessKeyId: keys.s3key,

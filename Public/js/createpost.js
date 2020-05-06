@@ -1,6 +1,5 @@
 $("#createPost").on("click", function(event){
     event.preventDefault();
-
     const title = $("#title").val().trim();
     const body = $("#body").val().trim();
     const zip = $("#zip").val().trim();
@@ -10,12 +9,19 @@ $("#createPost").on("click", function(event){
         body: body,
         zipCode: zip
     };
-
-    $.ajax("api/post", {
-        method: "POST",
-        data: post
-    }).then(function(){
-        console.log("Successfully created post")
-        res.redirect("/viewPost");
+    $.ajax("/api/user_data", {
+        type: "GET"
+    }
+    ).then( function(user){
+        post.UserId = user.id;
+        $.ajax("/api/post", {
+            method: "POST",
+            data: post
+        }).then(function(){
+            console.log("Successfully created post");
+            res.redirect("/viewPost");
+        });
     });
+
+
 });
