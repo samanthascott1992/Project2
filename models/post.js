@@ -18,7 +18,7 @@ module.exports = function(sequelize, DataTypes) {
             isNumeric: true
         },
         images: {
-            type: DataTypes.STRING
+            type: DataTypes.TEXT
         }
     });
 

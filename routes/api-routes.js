@@ -11,7 +11,7 @@ module.exports = function(app){
 
     // get route for posts page
     app.get("/api/posts", function(req, res){
-        db.Post.findAll().then(function(response){
+        db.Post.findAll({raw: true}).then(function(response){
             //const imageArray = response.images.split(", ")
             const posts = {
                 //images: imageArray,
