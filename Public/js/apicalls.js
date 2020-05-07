@@ -57,8 +57,14 @@ $("#viewPostButton").on("click", (event)=>{
     $.ajax("/viewPost",{
         method: "GET"
     }).then(()=>{
-        window.location.replace("/viewPost");
-    });
+        window.location.assign("/viewPost");
+    }).then(
+        $.ajax("/api/posts", {
+            method: "GET"
+        }).then(data=>{
+            console.log(data);
+        })
+    );
 });
 
 

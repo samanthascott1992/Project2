@@ -156,3 +156,11 @@ h3 {
     float: left;
 }
 
+#createPost {
+    background-color: lightblue;
+    padding: 10px;
+}
+
+#createPostArea {
+    margin-left: 30px;
+}

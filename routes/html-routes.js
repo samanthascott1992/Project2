@@ -1,4 +1,5 @@
 const path = require("path");
+var db = require("../models");
 
 
 // will need  route for homepage, all posts page, sign up page, login page, create posts page
@@ -18,8 +19,11 @@ module.exports = function(app) {
 
     app.get("/viewPost", function(req, res){
         //Show viewPost Page
+        db.Post.findAll().then(function(response){
+            res.render("viewPost", response);
+        });
         // res.sendFile(path.join(__dirname, "../views/viewPost.handlebars"));
-        res.render("viewPost");
+        // res.render("viewPost");
     });
 
     app.get("/login", function(req, res) {
