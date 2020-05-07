@@ -12,7 +12,13 @@ module.exports = function(app){
     // get route for posts page
     app.get("/api/posts", function(req, res){
         db.Post.findAll().then(function(response){
-            res.json(response);
+            //const imageArray = response.images.split(", ")
+            const posts = {
+                //images: imageArray,
+                posts: response
+            }
+            res.render("viewPost", posts);
+            console.log(posts)
         });
     });
     
@@ -23,7 +29,6 @@ module.exports = function(app){
 
     // sign up route
     app.post("/api/signup", function(req, res) {
-        console.log(req.body)
         db.User.create(req.body).then(function() {
             res.redirect(307, "/api/login");
         }).catch(function(err) {
@@ -34,7 +39,6 @@ module.exports = function(app){
     // create post route
     app.post("/api/post", function(req, res){
         req.body.zipCode = parseInt(req.body.zipCode)
-        console.log(req.body)
         db.Post.create(req.body).then(data=>{
             res.status(200)
         }).catch(err=>{
