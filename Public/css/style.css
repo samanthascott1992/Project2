@@ -160,3 +160,23 @@ h3 {
     width: 75%;
     float:right;
 }
+
+#allPosts {
+    width: 80%;
+    float: right;
+}
+
+#singlePost {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#postBody {
+    float: right;
+}
+
+#postImage {
+    width: 20rem;
+    height: 20rem;
+    padding: 20px;
+}

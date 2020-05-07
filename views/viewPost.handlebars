@@ -54,13 +54,13 @@
 
 <h2>All Posts:</h2>
 
-<div>
+<div id="allPosts">
     {{#each posts}}
-        <div>
-            <h2>{{title}}</h2>
-            <p>{{body}}</p>
+        <div id="singlePost">
+            <h2 id= "postTitle">{{title}}</h2>
+            <p id= "postBody">{{body}}</p>
             {{#each images}}
-              <img src="{{image}}">
+              <img src="{{image}}" id= 'postImage'>
             {{/each}}
         </div>
     {{/each}}
