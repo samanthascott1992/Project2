@@ -170,10 +170,43 @@ html, body {
     padding: 20px;
 }
 
+<<<<<<< HEAD
 #postTitle {
     font-size: 2.5em;
 }
 
 #allPostsHeader {
     font-size: 4em;
+=======
+#title {
+    border-radius: 4px;
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+#body {
+    border-radius: 4px;
+    width: 80%;
+    height: 30rem;
+    margin-bottom: 20px;
+}
+
+#zipCode {
+    border-radius: 4px;
+    margin-top: 30px;
+}
+
+#titleHeading {
+    margin-top: 30px;
+    margin-bottom: 5px;
+}
+
+.inputAreaLabel {
+    margin-bottom: 5px;
+}
+
+#fileDescription {
+    width: 60%;
+    border-radius: 4px;
+>>>>>>> master
 }

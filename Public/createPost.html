@@ -33,22 +33,28 @@
         </div>
       </nav>
       <div id = "createPostArea">
-        <h4>Title</h4>
+        <h4 id="titleHeading" class= "inputAreaLabel">Title</h4>
         <input id = "title" placeholder= "title">
-        <h4>Description</h4>
-        <input id = "body" placeholder= "body">
-        <h5>Zip Code</h5>
+        <h4 class= "inputAreaLabel">Description</h4>
+        <textarea id = "body" rows="50" placeholder= "body"></textarea>
+        <h5 class= "inputAreaLabel">Zip Code</h5>
         <input id = "zip" placeholder= "zip code">
         <br>
         <br>
         <br>
         <form id="uploadForm" enctype="multipart/form-data">
-          <label for="description">File Description:</label>
-          <input type="text" name="description" placeholder="File Description" id="description" />
+          <label class= "inputAreaLabel" for="description">Image Description:</label>
+          <br>
+          <input id="fileDescription" type="text" name="description" placeholder="File Description" id="description" />
+          <br>
+          <br>
 
           <!-- the name attribute here ('upload') must match the key following 'req.files' in your back-end route! -->
-          <label for="upload">Upload File:</label>
-          <input type="file" name="upload" id="upload" />
+          <label class= "inputAreaLabel" for="upload">Upload File:</label>
+          <br>
+          <br>
+          <input class= "inputAreaLabel" type="file" name="upload" id="upload" />
+          <br>
 
           <input type="submit" value="Upload File" id="submitUpload" />
         </form>
