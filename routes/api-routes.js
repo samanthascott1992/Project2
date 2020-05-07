@@ -13,9 +13,11 @@ module.exports = function(app){
     app.get("/api/posts", function(req, res){
         db.Post.findAll({raw: true}).then(function(response){
             const posts = response.map(post =>{
+                if(post.images !== null){
                 post.images = post.images.split(", ").map(image=> {
                     return {image: image}
                 })
+            }
                 return post;
             })
         res.render("viewPost", {posts: posts}); 
