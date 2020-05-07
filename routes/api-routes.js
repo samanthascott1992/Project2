@@ -18,7 +18,6 @@ module.exports = function(app){
                 })
                 return post;
             })
-            console.log(posts)
         res.render("viewPost", {posts: posts}); 
         });
     });
