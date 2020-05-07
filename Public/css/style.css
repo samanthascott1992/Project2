@@ -180,3 +180,35 @@ h3 {
     height: 20rem;
     padding: 20px;
 }
+
+#title {
+    border-radius: 4px;
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+#body {
+    border-radius: 4px;
+    width: 80%;
+    height: 30rem;
+    margin-bottom: 20px;
+}
+
+#zipCode {
+    border-radius: 4px;
+    margin-top: 30px;
+}
+
+#titleHeading {
+    margin-top: 30px;
+    margin-bottom: 5px;
+}
+
+.inputAreaLabel {
+    margin-bottom: 5px;
+}
+
+#fileDescription {
+    width: 60%;
+    border-radius: 4px;
+}
