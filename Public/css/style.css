@@ -111,28 +111,23 @@ body {
     color: red;
  
 }
-
-
 #forecast {
     width: 20%;
     height: auto;
     float: left; 
     position: fixed;
-    left: 10%;
+    left: 9%;
 }
-
 h3 {
     margin-left: 10px;
     font-size: 30px;
 }
-
-.map2{
+#map{
     float: right;
     height: 40%;
     width: 80%;
 }
-
- html, body {
+html, body {
    height: 100%;
    margin: 0;
    /* padding: 1rem; */
@@ -151,11 +146,7 @@ h3 {
    text-align: center;
 
 }
-.map1{
-    float: right;
-    height: 40%;
-    width: 70%;
-}
+
 .indexp{
     width: 75%;
     float:right;
