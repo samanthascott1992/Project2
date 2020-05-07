@@ -18,7 +18,10 @@ module.exports = function(sequelize, DataTypes) {
             isNumeric: true
         },
         images: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            validate: {
+                len: [0, 1000]
+            }
         }
     });
 

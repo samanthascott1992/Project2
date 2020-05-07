@@ -21,7 +21,7 @@ function signUpUser(name, email, password, address) {
         address: address
     })
         .then(function(data) {
-            window.location.replace("/login");
+            alert("You have successfully signed up!");
         })
         .catch(handleLoginErr);
 }
