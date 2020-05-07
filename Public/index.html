@@ -189,7 +189,7 @@
          type: "GET",
          url: queryUrl,
          dataType: "JSON", success: function (response) {
-           $("#forecast").html("<h4 class=\"mt-3\">5-Day Forecast for Your Area: </h4>").append("<div class=\"row\">")
+           $("#forecast").html("<h4 class=\"mt-3\">Forecast for Your Area: </h4>").append("<div class=\"row\">")
            for(var i=0; i< response.list.length; i++) {
                if (response.list[i].dt_txt.indexOf("12:00:00") !== -1)
                {
