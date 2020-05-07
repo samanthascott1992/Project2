@@ -170,14 +170,14 @@ html, body {
     padding: 20px;
 }
 
-<<<<<<< HEAD
 #postTitle {
     font-size: 2.5em;
 }
 
 #allPostsHeader {
     font-size: 4em;
-=======
+}
+
 #title {
     border-radius: 4px;
     width: 80%;
@@ -208,5 +208,4 @@ html, body {
 #fileDescription {
     width: 60%;
     border-radius: 4px;
->>>>>>> master
 }
