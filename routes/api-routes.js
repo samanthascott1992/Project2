@@ -12,13 +12,14 @@ module.exports = function(app){
     // get route for posts page
     app.get("/api/posts", function(req, res){
         db.Post.findAll({raw: true}).then(function(response){
-            //const imageArray = response.images.split(", ")
-            const posts = {
-                //images: imageArray,
-                posts: response
-            }
-            res.render("viewPost", posts);
+            const posts = response.map(post =>{
+                post.images = post.images.split(", ").map(image=> {
+                    return {image: image}
+                })
+                return post;
+            })
             console.log(posts)
+        res.render("viewPost", {posts: posts}); 
         });
     });
     
