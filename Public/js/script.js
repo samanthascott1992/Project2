@@ -20,7 +20,7 @@ $("#submitUpload").on("click", function (event) {
         timeout: 600000,
         success: function(response) {
             // celebrate a bit; the upload succeeded!
-            alert("Success!!!");
+            alert("You have successfully uploaded an image!!!");
             // the back-end sends an object containing the AWS url for the newly-uploaded 
             // file and any additional data sent from the front-end via our AJAX post
             console.log(response);
@@ -53,7 +53,7 @@ $("#createPost").on("click", function(event){
             method: "POST",
             data: post
         }).then(function(){
-            console.log("Successfully created post");
+            alert("Successfully created post");
             res.redirect("/viewPost");
         });
     });
@@ -62,7 +62,6 @@ $("#createPost").on("click", function(event){
 
 $("#submitButton").on("click", event=>{
     event.preventDefault();
-    alert("test")
     $.ajax("/api/login", {
         type: "POST",
         data: {
@@ -70,6 +69,7 @@ $("#submitButton").on("click", event=>{
             password: $("#loginPassword").val().trim()
         }
     }).then(()=>{
-        location.href= "/viewPost";
+        alert("You have successfully logged in");
+        location.redirect= "/createPost";
     });
 });
