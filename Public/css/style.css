@@ -12,7 +12,6 @@ body {
     margin-right: 15px;
 }
 
-
 .listing1 {
     width: 75%;
     color: black;
@@ -151,10 +150,21 @@ h3 {
 
 #map{
     float: left;
+    height: 40%;
+    width: 50%;
 }
 #forecast {
     float: left;
-}
+    height: 50%;
+    padding-left: 1rem;
+   }
+
+ /* Optional: Makes the sample page fill the window. */
+ html, body {
+   height: 100%;
+   margin: 0;
+   padding: 1rem;
+ }
 
 #createPost {
     background-color: lightblue;
