@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SELLYOSTUFF</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -55,27 +55,32 @@
             <p1>Don't have an account yet!</p1> <a href="createAccount.html" id="newAccount"><span style="color: red">Start Here!</span></a>
         </div>
     </div>
-
-
-    <div id="map"> </div>
+      <div class="welcome">
+          <p>Welcome to SellYoStuff!</p>
+            <!-- <img src="garagesale2.png" alt="garage-sale"> -->
+        </div>
+    <br>
+    
+ <div id="map" class="map1"> </div>
+   
     
     <div class="row"> 
-   <div id="forecast" class="mt-3"></div>  
+   <div id="forecast" class="mt-3"> 
+   </div>
    </div> 
-<br>
-<br>
 
-      <div class="listingContainer">
-            <ul class="listings">
-                <li class="listing1">
-                    testing the list item
-                </li>
-                <li class="listing2">
-                    test
-                </li> 
-            </ul>
-        </div>
-    
+  <div class="indexp">
+
+    <p>
+      While stuck in their house during quarantine some people have developed an online shopping habit. This has created so much clutter in their houses that they can’t order anything else.
+      Their house is bursting with all of the things that have already been delivered so, before they get all of their cool new stuff, that they already ordered, they have to create some room by getting rid of some things.
+     You have found this amazing garage sale site that allows you to do more than just post your stuff. Not only can you sell your things, but you can also view all of the things that other people around you are selling.
+     Lets get started!
+    </p>
+  </div>
+
+
+
 
 
 
@@ -190,7 +195,7 @@
                {
                    console.log(response);
                    var col = $("<div>").addClass("col-md-2")
-                   var card = $("<div>").addClass("card bg-primary text-white")
+                   var card = $("<div>").addClass("card")
                    var body = $("<div>").addClass("card-body p-2")
                    var date = $("<p>").addClass("date").text(response.list[i].dt_txt.substr(0,10))
                    var icon = $("<img>").addClass("card-text").attr("src", "http://openweathermap.org/img/w/" + response.list[i].weather[0].icon + ".png" )
