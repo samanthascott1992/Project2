@@ -42,7 +42,7 @@ module.exports = function(app){
     app.post("/api/post", function(req, res){
         req.body.zipCode = parseInt(req.body.zipCode)
         db.Post.create(req.body).then(data=>{
-            res.status(200)
+            res.status(200).end()
         }).catch(err=>{
             console.log(err)
             res.status(401).json(err)
